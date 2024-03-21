@@ -1,0 +1,12 @@
+def modify_string(S):
+    modified_string = ''
+    for char in S:
+        frequency = S.count(char)
+        distance = (ord(char) - ord('a') + frequency) % 26  # Calculate circular distance
+        new_char = chr(ord('a') + distance)  # Convert circular distance back to character
+        modified_string += new_char
+    return modified_string
+
+# Test case
+S = "ghee"
+print(modify_string(S))  # Output: "hggi"
