@@ -1,0 +1,12 @@
+def is_mirror_number(num):
+    # Reverse the number
+    reversed_num = int(str(num)[::-1])
+    # Check if the reversed number is equal to the original number
+    return num == reversed_num
+
+# Test case
+num = input("Enter the number: ")
+if is_mirror_number(num):
+    print("Mirror image:", num)
+else:
+    print("No mirror image exists for the given number.")
