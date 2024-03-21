@@ -1,0 +1,42 @@
+class Solution:
+    def isNumber(self, s: str) -> bool:
+        states = [
+            {},  # State 0: Initial state
+            {'blank': 1, 'sign': 2, 'digit': 3, '.': 4},  # State 1: Space before number
+            {'digit': 3, '.': 4},  # State 2: Sign before number
+            {'digit': 3, '.': 5, 'e': 6, 'blank': 9},  # State 3: Integer part
+            {'digit': 5},  # State 4: Decimal without integer part
+            {'digit': 5, 'e': 6, 'blank': 9},  # State 5: Decimal with integer part
+            {'sign': 7, 'digit': 8},  # State 6: 'e' or 'E' after number
+            {'digit': 8},  # State 7: Sign after 'e' or 'E'
+            {'digit': 8, 'blank': 9},  # State 8: Exponential part
+            {'blank': 9}  # State 9: Space after valid number
+        ]
+        
+        current_state = 1
+        for char in s:
+            if char.isdigit():
+                char_type = 'digit'
+            elif char in ['+', '-']:
+                char_type = 'sign'
+            elif char in ['e', 'E']:
+                char_type = 'e'
+            elif char == ' ':
+                char_type = 'blank'
+            elif char == '.':
+                char_type = '.'
+            else:
+                return False
+            
+            if char_type not in states[current_state]:
+                return False
+            
+            current_state = states[current_state][char_type]
+        
+        # Check if the final state is one of the valid ending states
+        return current_state in [3, 5, 8, 9]
+
+# Test case
+s = "0"
+sol = Solution()
+print(sol.isNumber(s))  # Output: True
