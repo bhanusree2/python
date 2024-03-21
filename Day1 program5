@@ -1,0 +1,11 @@
+PRICE_PER_LOAF = 185
+DISCOUNT_PERCENTAGE = 60
+num_fresh_loaves = int(input("Enter the number of fresh loaves purchased: "))
+num_day_old_loaves = int(input("Enter the number of day old loaves purchased: "))
+total_price_fresh = num_fresh_loaves * PRICE_PER_LOAF
+total_price_day_old = num_day_old_loaves * (PRICE_PER_LOAF * (100 - DISCOUNT_PERCENTAGE) / 100)
+total_price = total_price_fresh + total_price_day_old
+print("Regular price: Rs. {:.2f}".format(PRICE_PER_LOAF))
+print("Amount of new loaves: {:.2f}".format(total_price_fresh))
+print("Amount of day old loaves: {:.2f}".format(total_price_day_old))
+print("Total amount: Rs. {:.2f}".format(total_price))
