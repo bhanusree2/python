@@ -1,0 +1,46 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def mergeTwoLists(list1, list2):
+    # Create a dummy node to serve as the head of the merged list
+    dummy = ListNode()
+    current = dummy
+    
+    # Traverse both lists simultaneously
+    while list1 and list2:
+        # Compare the values of the current nodes in both lists
+        if list1.val < list2.val:
+            current.next = list1
+            list1 = list1.next
+        else:
+            current.next = list2
+            list2 = list2.next
+        # Move to the next node in the merged list
+        current = current.next
+    
+    # Append the remaining nodes of list1 or list2, if any
+    if list1:
+        current.next = list1
+    else:
+        current.next = list2
+    
+    # Return the head of the merged list (excluding the dummy node)
+    return dummy.next
+
+# Test case
+# Create linked lists from the given arrays
+list1 = ListNode(1)
+list1.next = ListNode(2)
+list1.next.next = ListNode(4)
+
+list2 = ListNode(1)
+list2.next = ListNode(3)
+list2.next.next = ListNode(4)
+
+# Merge the lists and print the result
+merged_list = mergeTwoLists(list1, list2)
+while merged_list:
+    print(merged_list.val, end=" ")
+    merged_list = merged_list.next
