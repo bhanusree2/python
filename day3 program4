@@ -1,0 +1,26 @@
+def addBinary(a: str, b: str) -> str:
+    result = []
+    carry = 0
+    i, j = len(a) - 1, len(b) - 1
+    
+    while i >= 0 or j >= 0 or carry:
+        digit_sum = carry
+        if i >= 0:
+            digit_sum += int(a[i])
+            i -= 1
+        if j >= 0:
+            digit_sum += int(b[j])
+            j -= 1
+        
+        # Append the sum digit to the result
+        result.append(str(digit_sum % 2))
+        # Update the carry
+        carry = digit_sum // 2
+    
+    # Convert the result list to a string and reverse it
+    return ''.join(result[::-1])
+
+# Test case
+a = "11"
+b = "1"
+print(addBinary(a, b))  # Output: "100"
