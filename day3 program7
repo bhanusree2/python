@@ -1,0 +1,18 @@
+rom itertools import permutations
+
+def permute_unique(nums):
+    # Sort the input list to handle duplicates
+    nums.sort()
+    
+    # Generate unique permutations
+    unique_permutations = set(permutations(nums))
+    
+    # Convert set back to a list of tuples
+    unique_permutations_list = [list(perm) for perm in unique_permutations]
+    
+    return unique_permutations_list
+
+# Example usage:
+nums = [1, 1, 2]
+unique_permutations = permute_unique(nums)
+print("Unique permutations:", unique_permutations)
